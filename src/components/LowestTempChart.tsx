@@ -16,6 +16,7 @@ import {queryDocuments} from "../utils/queries";
 import {filterByMonth, filterLowestTemp} from "../utils/filters";
 import {ForestFire} from "../types";
 import {Stack, Title as Heading} from '@mantine/core';
+import IncidentTable from "./IncidentTable";
 
 //create a list called labels with the months
 const labels = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
@@ -24,7 +25,7 @@ const frequencyChartData = (docData: ForestFire[]) => {
     const datasets = [
         {
             fill: true,
-            label: 'Fire Count',
+            label: 'Lowest Temp',
             data: labels.map((month) => filterLowestTemp(docData, month)),
             borderColor: 'rgb(255,109,70)',
             backgroundColor: 'rgba(255,109,70, 0.5)',
@@ -70,7 +71,7 @@ function LowestTempChart() {
     const newData = docData as ForestFire[]
     return (
         <Stack>
-            <Heading order={2}>
+            <Heading order={3}>
                 Lowest Temperature per Month
             </Heading>
             <Bar

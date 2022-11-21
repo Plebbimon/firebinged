@@ -1,11 +1,13 @@
 import './App.css'
-import {Container, Group, Title} from "@mantine/core";
+import {Container, Divider, Group, Title} from "@mantine/core";
 
 
 // TODO: Place this somewhere else
 import {initializeApp} from "firebase/app";
 import FrequencyChart from "./components/FrequencyChart";
 import LowestTempChart from "./components/LowestTempChart";
+import IncidentTable from "./components/IncidentTable";
+import CreateIncidentForm from "./components/CreateForestFireForm";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBPGNoCkIz9QYxVpRK0LuvfI3l8f7tjS14",
@@ -22,14 +24,16 @@ const app = initializeApp(firebaseConfig);
 function App() {
     return (
         <div className="App">
-
             <Container size={"xl"}>
 
                 <Title variant={"gradient"} gradient={{from: 'red', to: 'yellow', deg: 60}} order={1}>Firewatch</Title>
-                <Group>
+                <Group my={"md"} position={"apart"}>
                     <FrequencyChart/>
                     <LowestTempChart/>
                 </Group>
+                <Divider my={"xl"} variant={"dashed"}/>
+                <CreateIncidentForm/>
+                <IncidentTable/>
             </Container>
         </div>
     )
