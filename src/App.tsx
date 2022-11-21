@@ -43,8 +43,8 @@ function App() {
       <Container size={"xl"}>
         <Title
           variant={"gradient"}
-          gradient={{ from: "red", to: "yellow", deg: 60 }}
-          order={1}
+          gradient={{ from: "red", to: "yellow", deg: 30 }}
+          transform={"uppercase"}
         >
           Firewatch
         </Title>
