@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@mantine/core": "^5.8.2",
+    "@mantine/form": "^5.8.2",
     "@mantine/hooks": "^5.8.2",
     "@types/d3": "^7.4.0",
     "chart.js": "^4.0.1",

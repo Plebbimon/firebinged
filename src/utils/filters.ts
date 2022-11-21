@@ -11,7 +11,6 @@ export function filterLowestTemp(data: ForestFire[], month: string) {
     // sort by temp
     const sorted = filtered.sort((a, b) => a.temp - b.temp);
     // return the first item
-    console.log(sorted[0]);
     return sorted[0]?.temp;
 }
 
