@@ -18,7 +18,7 @@ import { Stack, Title as Heading } from "@mantine/core";
 import { months } from "../../consts";
 
 const labels = months;
-const frequencyChartData = (docData: ForestFire[]) => {
+const tempChartData = (docData: ForestFire[]) => {
   const datasets = [
     {
       label: "Min",
@@ -66,15 +66,15 @@ export const options = {
   },
 };
 
-function LowestTempChart({ data }: FireChartProps) {
+function TempChart({ data }: FireChartProps) {
   return (
     <Stack>
       <Heading order={3} transform="uppercase" color={"gray"} weight="bold">
-        Temperatures per Month
+        Temperatures by Month
       </Heading>
-      <Bar data={frequencyChartData(data)} width={400} height={400} />
+      <Bar data={tempChartData(data)} width={400} height={400} />
     </Stack>
   );
 }
 
-export default LowestTempChart;
+export default TempChart;
