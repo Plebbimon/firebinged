@@ -4,7 +4,7 @@ import { Container, Divider, Group, Stack, Title } from "@mantine/core";
 // TODO: Place this somewhere else
 import { initializeApp } from "firebase/app";
 import FrequencyChart from "./components/charts/FrequencyChart";
-import LowestTempChart from "./components/charts/LowestTempChart";
+import TempChart from "./components/charts/TempChart";
 import IncidentTable from "./components/IncidentTable";
 import CreateIncidentForm from "./components/CreateForestFireForm";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -63,7 +63,7 @@ function App() {
         <Stack>
           <Group my={"md"} position={"apart"}>
             <FrequencyChart data={data} />
-            <LowestTempChart data={data} />
+            <TempChart data={data} />
             <HumidityChart data={data} />
           </Group>
           <Group>

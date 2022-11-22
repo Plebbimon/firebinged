@@ -1,6 +1,7 @@
 //Document Query for the "firewatch" collection
 import db from "../../firebase";
 import {
+  addDoc,
   collection,
   DocumentData,
   limit,
@@ -8,6 +9,7 @@ import {
   query,
   startAfter,
 } from "firebase/firestore";
+import { ForestFire } from "../types";
 
 export function queryDocuments() {
   const collectionRef = collection(db, "/forestfires");
@@ -35,6 +37,12 @@ export function queryDocumentsPaginated(
     orderBy(orderByString, orderDirection)
   );
 }
+
+export const submitForestFire = async (data: ForestFire) => {
+  const collectionRef = collection(db, "/forestfires");
+  console.log("submitForestFire", data);
+  await addDoc(collectionRef, data);
+};
 
 // I've realized that picking firebase for this type of work was a dumbass move
 // But I'm sticking with it, and we'll see how bad it can get
