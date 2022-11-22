@@ -10,10 +10,11 @@ import {
   startAfter,
 } from "firebase/firestore";
 import { ForestFire } from "../types";
+import { QUERY_LIMIT } from "../consts";
 
 export function queryDocuments() {
   const collectionRef = collection(db, "/forestfires");
-  return query(collectionRef, limit(20));
+  return query(collectionRef, limit(QUERY_LIMIT));
 }
 
 export function queryDocumentsPaginated(

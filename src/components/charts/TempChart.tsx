@@ -26,7 +26,7 @@ const tempChartData = (docData: ForestFire[]) => {
       backgroundColor: "rgba(255,202,70,0.58)",
     },
     {
-      label: "Avg",
+      label: "Avg (°C)",
       data: labels.map((month) =>
         filterAverageVariable(docData, "temp", month)
       ),
