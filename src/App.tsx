@@ -3,8 +3,8 @@ import { Container, Divider, Group, Stack, Title } from "@mantine/core";
 
 // TODO: Place this somewhere else
 import { initializeApp } from "firebase/app";
-import FrequencyChart from "./components/FrequencyChart";
-import LowestTempChart from "./components/LowestTempChart";
+import FrequencyChart from "./components/charts/FrequencyChart";
+import LowestTempChart from "./components/charts/LowestTempChart";
 import IncidentTable from "./components/IncidentTable";
 import CreateIncidentForm from "./components/CreateForestFireForm";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -12,11 +12,13 @@ import { queryDocuments } from "./utils/queries";
 import FullPageError from "./components/FullPageError";
 import FullContentLoader from "./components/FullContentLoader";
 import { ForestFire } from "./types";
-import HumidityChart from "./components/HumidityChart";
-import WindChart from "./components/WindChart";
-import { FilterSelect } from "./components/FilterSelect";
+import HumidityChart from "./components/charts/HumidityChart";
+import WindChart from "./components/charts/WindChart";
+import { FilterSelect } from "./components/filters/FilterSelect";
 import { useState } from "react";
-import { FilterOrderControl } from "./components/FilterOrderControl";
+import { FilterOrderControl } from "./components/filters/FilterOrderControl";
+import BurnedAreaChart from "./components/charts/BurnedAreaChart";
+import RainChart from "./components/charts/RainChart";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPGNoCkIz9QYxVpRK0LuvfI3l8f7tjS14",
@@ -46,11 +48,11 @@ function App() {
   const data = docData as ForestFire[];
 
   return (
-    <div
-      className="App"
-      style={{ borderRight: "1px solid #ddd", borderLeft: "1px solid #ddd" }}
-    >
-      <Container size={"xl"}>
+    <div className="App">
+      <Container
+        size={"xl"}
+        style={{ borderRight: "1px solid #ddd", borderLeft: "1px solid #ddd" }}
+      >
         <Title
           variant={"gradient"}
           gradient={{ from: "red", to: "yellow", deg: 30 }}
@@ -66,6 +68,8 @@ function App() {
           </Group>
           <Group>
             <WindChart data={data} />
+            <BurnedAreaChart data={data} />
+            <RainChart data={data} />
           </Group>
         </Stack>
         <Divider my={"xl"} variant={"dashed"} />

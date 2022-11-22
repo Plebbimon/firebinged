@@ -9,33 +9,34 @@ import {
   Tooltip,
 } from "chart.js";
 import {
-  filterAverageHumidity,
-  filterAverageTemp,
-  filterHighestHumidity,
-  filterHighestTemp,
-  filterLowestHumidity,
-  filterLowestTemp,
-} from "../utils/filters";
-import { ForestFire, HumidityChartProps } from "../types";
+  filterAverageVariable,
+  filterHighestVariable,
+  filterLowestVariable,
+} from "../../utils/filters";
+import { FireChartProps, ForestFire } from "../../types";
 import { Stack, Title as Heading } from "@mantine/core";
-import { months } from "../consts";
+import { months } from "../../consts";
 
 const labels = months;
 const frequencyChartData = (docData: ForestFire[]) => {
   const datasets = [
     {
       label: "Min",
-      data: labels.map((month) => filterLowestHumidity(docData, month)),
+      data: labels.map((month) => filterLowestVariable(docData, "rain", month)),
       backgroundColor: "rgba(119,194,255,0.58)",
     },
     {
       label: "Avg",
-      data: labels.map((month) => filterAverageHumidity(docData, month)),
+      data: labels.map((month) =>
+        filterAverageVariable(docData, "rain", month)
+      ),
       backgroundColor: "rgba(56,127,255,0.5)",
     },
     {
       label: "Max",
-      data: labels.map((month) => filterHighestHumidity(docData, month)),
+      data: labels.map((month) =>
+        filterHighestVariable(docData, "rain", month)
+      ),
 
       backgroundColor: "rgba(0,73,159,0.5)",
     },
@@ -65,15 +66,15 @@ export const options = {
   },
 };
 
-function HumidityChart({ data }: HumidityChartProps) {
+function RainChart({ data }: FireChartProps) {
   return (
     <Stack>
       <Heading order={3} transform="uppercase" color={"gray"} weight="bold">
-        Humidity by Month
+        Rainfall
       </Heading>
       <Bar data={frequencyChartData(data)} width={400} height={400} />
     </Stack>
   );
 }
 
-export default HumidityChart;
+export default RainChart;

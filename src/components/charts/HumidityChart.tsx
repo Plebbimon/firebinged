@@ -9,32 +9,32 @@ import {
   Tooltip,
 } from "chart.js";
 import {
-  filterAverageTemp,
-  filterHighestTemp,
-  filterLowestTemp,
-} from "../utils/filters";
-import { ForestFire, LowestTempChartProps } from "../types";
+  filterAverageVariable,
+  filterHighestVariable,
+  filterLowestVariable,
+} from "../../utils/filters";
+import { FireChartProps, ForestFire } from "../../types";
 import { Stack, Title as Heading } from "@mantine/core";
-import { months } from "../consts";
+import { months } from "../../consts";
 
 const labels = months;
 const frequencyChartData = (docData: ForestFire[]) => {
   const datasets = [
     {
       label: "Min",
-      data: labels.map((month) => filterLowestTemp(docData, month)),
-      backgroundColor: "rgba(255,202,70,0.58)",
+      data: labels.map((month) => filterLowestVariable(docData, "RH", month)),
+      backgroundColor: "rgba(119,194,255,0.58)",
     },
     {
       label: "Avg",
-      data: labels.map((month) => filterAverageTemp(docData, month)),
-      backgroundColor: "rgba(255,109,70, 0.5)",
+      data: labels.map((month) => filterAverageVariable(docData, "RH", month)),
+      backgroundColor: "rgba(56,127,255,0.5)",
     },
     {
       label: "Max",
-      data: labels.map((month) => filterHighestTemp(docData, month)),
+      data: labels.map((month) => filterHighestVariable(docData, "RH", month)),
 
-      backgroundColor: "rgba(180,0,0,0.5)",
+      backgroundColor: "rgba(0,73,159,0.5)",
     },
   ];
   return { labels, datasets };
@@ -62,15 +62,15 @@ export const options = {
   },
 };
 
-function LowestTempChart({ data }: LowestTempChartProps) {
+function HumidityChart({ data }: FireChartProps) {
   return (
     <Stack>
       <Heading order={3} transform="uppercase" color={"gray"} weight="bold">
-        Temperatures per Month
+        Humidity by Month
       </Heading>
       <Bar data={frequencyChartData(data)} width={400} height={400} />
     </Stack>
   );
 }
 
-export default LowestTempChart;
+export default HumidityChart;
