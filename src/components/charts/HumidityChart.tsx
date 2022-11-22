@@ -26,7 +26,7 @@ const frequencyChartData = (docData: ForestFire[]) => {
       backgroundColor: "rgba(119,194,255,0.58)",
     },
     {
-      label: "Avg",
+      label: "Avg %",
       data: labels.map((month) => filterAverageVariable(docData, "RH", month)),
       backgroundColor: "rgba(56,127,255,0.5)",
     },

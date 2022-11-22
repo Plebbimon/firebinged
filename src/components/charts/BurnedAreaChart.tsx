@@ -18,7 +18,7 @@ const burnedAreaChartData = (docData: ForestFire[]) => {
   const datasets = [
     {
       fill: true,
-      label: "Area",
+      label: "Area (ha)",
       data: months.map((month) =>
         filterAverageVariable(docData, "area", month)
       ),
