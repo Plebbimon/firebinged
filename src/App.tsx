@@ -1,5 +1,5 @@
 import "./App.css";
-import { Container, Divider, Group, Title } from "@mantine/core";
+import { Container, Divider, Group, Stack, Title } from "@mantine/core";
 
 // TODO: Place this somewhere else
 import { initializeApp } from "firebase/app";
@@ -12,6 +12,8 @@ import { queryDocuments } from "./utils/queries";
 import FullPageError from "./components/FullPageError";
 import FullContentLoader from "./components/FullContentLoader";
 import { ForestFire } from "./types";
+import HumidityChart from "./components/HumidityChart";
+import WindChart from "./components/WindChart";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPGNoCkIz9QYxVpRK0LuvfI3l8f7tjS14",
@@ -48,10 +50,16 @@ function App() {
         >
           Firewatch
         </Title>
-        <Group my={"md"} position={"apart"}>
-          <FrequencyChart data={data} />
-          <LowestTempChart data={data} />
-        </Group>
+        <Stack>
+          <Group my={"md"} position={"apart"}>
+            <FrequencyChart data={data} />
+            <LowestTempChart data={data} />
+            <HumidityChart data={data} />
+          </Group>
+          <Group>
+            <WindChart data={data} />
+          </Group>
+        </Stack>
         <Divider my={"xl"} variant={"dashed"} />
         <CreateIncidentForm />
         <IncidentTable />
