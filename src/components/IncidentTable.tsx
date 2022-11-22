@@ -24,7 +24,7 @@ interface IncidentTableProps {
 
 function IncidentTable() {
   const [lastVisible, setLastVisible] = useState<DocumentData | null>(null);
-  let query_ = queryDocumentsPaginated(20, "month", lastVisible);
+  let query_ = queryDocumentsPaginated(20, "area", lastVisible);
   const [docData, loading, error] = useCollection(query_);
 
   if (error) {

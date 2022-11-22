@@ -2,7 +2,6 @@ import { Line } from "react-chartjs-2";
 import {
   CategoryScale,
   Chart as ChartJS,
-  Filler,
   Legend,
   LinearScale,
   LineElement,
@@ -10,23 +9,26 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import { filterByMonth } from "../utils/filters";
-import { ForestFire, FrequencyChartProps } from "../types";
+import {
+  filterAverageTemp,
+  filterAverageWind,
+  filterByMonth,
+  filterHighestTemp,
+  filterLowestTemp,
+} from "../utils/filters";
+import { ForestFire, LowestTempChartProps, WindChartProps } from "../types";
 import { Stack, Title as Heading } from "@mantine/core";
 import { months } from "../consts";
 
-const labels = months;
-
-const frequencyChartData = (docData: ForestFire[]) => {
+const windChartData = (docData: ForestFire[]) => {
   const datasets = [
     {
-      fill: true,
-      label: "Fire Count",
-      data: labels.map((month) => filterByMonth(docData, month).length),
-      borderColor: "rgb(255,109,70)",
-      backgroundColor: "rgba(255,109,70, 0.5)",
+      label: "Wind",
+      data: months.map((month) => filterAverageWind(docData, month)),
+      backgroundColor: "rgba(110,224,255,0.58)",
     },
   ];
+  const labels = months;
   return { labels, datasets };
 };
 
@@ -37,7 +39,6 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Filler,
   Legend
 );
 
@@ -54,13 +55,14 @@ export const options = {
   },
 };
 
-function FrequencyChart({ data }: FrequencyChartProps) {
+function WindChart({ data }: WindChartProps) {
+  console.table(windChartData(data).datasets[0].data);
   return (
     <Stack>
-      <Heading order={3}>Fire Frequency by Month</Heading>
-      <Line data={frequencyChartData(data)} width={400} height={400} />
+      <Heading order={3}>Windforce by Month</Heading>
+      <Line data={windChartData(data)} width={400} height={400} />
     </Stack>
   );
 }
 
-export default FrequencyChart;
+export default WindChart;
