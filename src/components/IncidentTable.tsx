@@ -19,12 +19,18 @@ import FullContentLoader from "./FullContentLoader";
 import FullPageError from "./FullPageError";
 
 interface IncidentTableProps {
-  data: ForestFire[];
+  filterWord: string;
+  filterOrder: "asc" | "desc";
 }
 
-function IncidentTable() {
+function IncidentTable({ filterWord, filterOrder }: IncidentTableProps) {
   const [lastVisible, setLastVisible] = useState<DocumentData | null>(null);
-  let query_ = queryDocumentsPaginated(20, "area", lastVisible);
+  let query_ = queryDocumentsPaginated(
+    10,
+    filterWord,
+    filterOrder,
+    lastVisible
+  );
   const [docData, loading, error] = useCollection(query_);
 
   if (error) {

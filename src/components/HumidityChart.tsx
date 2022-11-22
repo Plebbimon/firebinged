@@ -26,18 +26,18 @@ const frequencyChartData = (docData: ForestFire[]) => {
     {
       label: "Min",
       data: labels.map((month) => filterLowestHumidity(docData, month)),
-      backgroundColor: "rgba(255,202,70,0.58)",
+      backgroundColor: "rgba(119,194,255,0.58)",
     },
     {
       label: "Avg",
       data: labels.map((month) => filterAverageHumidity(docData, month)),
-      backgroundColor: "rgba(255,109,70, 0.5)",
+      backgroundColor: "rgba(56,127,255,0.5)",
     },
     {
       label: "Max",
       data: labels.map((month) => filterHighestHumidity(docData, month)),
 
-      backgroundColor: "rgba(180,0,0,0.5)",
+      backgroundColor: "rgba(0,73,159,0.5)",
     },
   ];
   return { labels, datasets };
@@ -68,7 +68,9 @@ export const options = {
 function HumidityChart({ data }: HumidityChartProps) {
   return (
     <Stack>
-      <Heading order={3}>Humidity by Month</Heading>
+      <Heading order={3} transform="uppercase" color={"gray"} weight="bold">
+        Humidity by Month
+      </Heading>
       <Bar data={frequencyChartData(data)} width={400} height={400} />
     </Stack>
   );

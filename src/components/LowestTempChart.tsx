@@ -65,7 +65,9 @@ export const options = {
 function LowestTempChart({ data }: LowestTempChartProps) {
   return (
     <Stack>
-      <Heading order={3}>Temperatures per Month</Heading>
+      <Heading order={3} transform="uppercase" color={"gray"} weight="bold">
+        Temperatures per Month
+      </Heading>
       <Bar data={frequencyChartData(data)} width={400} height={400} />
     </Stack>
   );

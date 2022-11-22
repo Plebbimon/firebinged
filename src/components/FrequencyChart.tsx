@@ -57,7 +57,9 @@ export const options = {
 function FrequencyChart({ data }: FrequencyChartProps) {
   return (
     <Stack>
-      <Heading order={3}>Fire Frequency by Month</Heading>
+      <Heading order={3} transform="uppercase" color={"gray"} weight="bold">
+        Fire Frequency by Month
+      </Heading>
       <Line data={frequencyChartData(data)} width={400} height={400} />
     </Stack>
   );
