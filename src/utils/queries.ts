@@ -29,13 +29,14 @@ export function queryDocumentsWithLimitAndOrder(
 export function queryDocumentsPaginated(
   limitNumber: number,
   orderByString: string,
+  orderDirection: "asc" | "desc",
   lastVisible: DocumentData | null
 ) {
   const collectionRef = collection(db, "/forestfires");
   if (lastVisible) {
     return query(
       collectionRef,
-      orderBy(orderByString, "desc"),
+      orderBy(orderByString, orderDirection),
       startAfter(lastVisible),
       limit(limitNumber)
     );
@@ -43,7 +44,7 @@ export function queryDocumentsPaginated(
   return query(
     collectionRef,
     limit(limitNumber),
-    orderBy(orderByString, "desc")
+    orderBy(orderByString, orderDirection)
   );
 }
 

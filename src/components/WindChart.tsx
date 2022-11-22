@@ -9,14 +9,8 @@ import {
   Title,
   Tooltip,
 } from "chart.js";
-import {
-  filterAverageTemp,
-  filterAverageWind,
-  filterByMonth,
-  filterHighestTemp,
-  filterLowestTemp,
-} from "../utils/filters";
-import { ForestFire, LowestTempChartProps, WindChartProps } from "../types";
+import { filterAverageWind } from "../utils/filters";
+import { ForestFire, WindChartProps } from "../types";
 import { Stack, Title as Heading } from "@mantine/core";
 import { months } from "../consts";
 
@@ -56,10 +50,11 @@ export const options = {
 };
 
 function WindChart({ data }: WindChartProps) {
-  console.table(windChartData(data).datasets[0].data);
   return (
     <Stack>
-      <Heading order={3}>Windforce by Month</Heading>
+      <Heading order={3} transform="uppercase" color={"gray"} weight="bold">
+        Windforce by Month
+      </Heading>
       <Line data={windChartData(data)} width={400} height={400} />
     </Stack>
   );

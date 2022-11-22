@@ -14,6 +14,9 @@ import FullContentLoader from "./components/FullContentLoader";
 import { ForestFire } from "./types";
 import HumidityChart from "./components/HumidityChart";
 import WindChart from "./components/WindChart";
+import { FilterSelect } from "./components/FilterSelect";
+import { useState } from "react";
+import { FilterOrderControl } from "./components/FilterOrderControl";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBPGNoCkIz9QYxVpRK0LuvfI3l8f7tjS14",
@@ -29,6 +32,8 @@ const app = initializeApp(firebaseConfig);
 
 function App() {
   const [docData, loading, error] = useCollectionData(queryDocuments());
+  const [filterWord, setFilterWord] = useState("area");
+  const [filterOrder, setFilterOrder] = useState<"asc" | "desc">("desc");
 
   if (error) {
     return <FullPageError />;
@@ -41,7 +46,10 @@ function App() {
   const data = docData as ForestFire[];
 
   return (
-    <div className="App">
+    <div
+      className="App"
+      style={{ borderRight: "1px solid #ddd", borderLeft: "1px solid #ddd" }}
+    >
       <Container size={"xl"}>
         <Title
           variant={"gradient"}
@@ -61,8 +69,14 @@ function App() {
           </Group>
         </Stack>
         <Divider my={"xl"} variant={"dashed"} />
-        <CreateIncidentForm />
-        <IncidentTable />
+        <Group position={"apart"} mb={"lg"} px={"xl"}>
+          <Group>
+            <FilterSelect onChange={setFilterWord} />
+            <FilterOrderControl onChange={setFilterOrder} />
+          </Group>
+          <CreateIncidentForm />
+        </Group>
+        <IncidentTable filterOrder={filterOrder} filterWord={filterWord} />
       </Container>
     </div>
   );
