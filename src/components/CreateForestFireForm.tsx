@@ -1,21 +1,18 @@
 import { useForm } from "@mantine/form";
 import {
   Button,
-  Container,
   Group,
   Modal,
   NumberInput,
   Select,
   SimpleGrid,
   Stack,
-  TextInput,
   Title,
 } from "@mantine/core";
 import { useState } from "react";
 import { months } from "../consts";
 import { submitForestFire } from "../utils/queries";
 
-interface CreateForestFireFormProps {}
 interface CreateForestFireFormValues {
   DC: number;
   DMC: number;
