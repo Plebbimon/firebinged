@@ -18,18 +18,6 @@ export interface ForestFireWithId extends ForestFire {
   id: string;
 }
 
-export interface LowestTempChartProps {
-  data: ForestFire[];
-}
-
-export interface FrequencyChartProps {
-  data: ForestFire[];
-}
-
-export interface WindChartProps {
-  data: ForestFire[];
-}
-
-export interface HumidityChartProps {
+export interface FireChartProps {
   data: ForestFire[];
 }

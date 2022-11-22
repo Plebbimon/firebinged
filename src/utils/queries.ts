@@ -14,18 +14,6 @@ export function queryDocuments() {
   return query(collectionRef, limit(20));
 }
 
-export function queryDocumentsWithLimitAndOrder(
-  limitNumber: number,
-  orderByString: string
-) {
-  const collectionRef = collection(db, "/forestfires");
-  return query(
-    collectionRef,
-    limit(limitNumber),
-    orderBy(orderByString, "asc")
-  );
-}
-
 export function queryDocumentsPaginated(
   limitNumber: number,
   orderByString: string,
