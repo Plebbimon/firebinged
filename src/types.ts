@@ -25,3 +25,11 @@ export interface LowestTempChartProps {
 export interface FrequencyChartProps {
   data: ForestFire[];
 }
+
+export interface WindChartProps {
+  data: ForestFire[];
+}
+
+export interface HumidityChartProps {
+  data: ForestFire[];
+}
